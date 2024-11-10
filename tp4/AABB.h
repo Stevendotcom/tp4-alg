@@ -5,6 +5,7 @@
 class AABB
 {
 public:
+
     Vector3 center;
     Vector3 extents;
 

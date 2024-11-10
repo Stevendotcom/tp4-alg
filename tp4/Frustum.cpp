@@ -161,6 +161,19 @@ bool Frustum::isAABBVisible(AABB& aabb) {
 	return true; // El AABB está dentro o en el borde del frustum
 }
 
+void Frustum::TestFrustum(Frustum& frustum) {
+	// Crear cubos (AABB)
+	AABB cube1(Vector3{ 0, 0, -5 }, Vector3{ 1, 1, 1 });  // Cubo 1 en (0, 0, -5)
+	AABB cube2(Vector3{ 10, 0, -5 }, Vector3{ 1, 1, 1 });  // Cubo 2 en (10, 0, -5)
+
+	// Agregar los cubos al frustum
+	frustum.AddObject(cube1);
+	frustum.AddObject(cube2);
+
+	// Dibujar los objetos visibles dentro del frustum
+	frustum.DrawVisibleObjects();  // Dibujará los cubos si están dentro del frustum
+}
+
 std::array<raylib::Vector3, 8> Frustum::MakeMesh() const
 {
 	std::array<raylib::Vector3, 8> Mesh;

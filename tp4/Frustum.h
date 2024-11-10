@@ -40,25 +40,35 @@ private:
 
 
 public:
+	struct AABB {
+		raylib::Vector3 center;  // Centro del AABB
+		raylib::Vector3 extents; // Extremos del AABB (tamaño)
+
+		// Constructor que recibe el centro y las extensiones
+		AABB(raylib::Vector3 c, raylib::Vector3 e) : center(c), extents(e) {}
+	};
+
+
 	Frustum(float FOD, const raylib::Camera& Camera);
 
 	void AddObject(const AABB& object);
 
 	void Update(raylib::Camera Camera);
-	
+
 	void UpdatePlanes();  // Nueva función para actualizar planos
 
-	void Move(raylib::Vector3 NewPosition);
+	//void Move(raylib::Vector3 NewPosition);
 
 	std::array<raylib::Vector3, 8> GetMesh() const;
 
 	void drawAABB(const AABB& aabb);
+
 	void DrawWireframe() const;
 
 	// Método para dibujar solo los objetos visibles dentro del frustum
 	void DrawVisibleObjects();
 
-	bool isAABBVisible( AABB& aabb) ;  // Método para frustum culling
+	bool isAABBVisible(AABB& aabb);  // Método para frustum culling
 
-
+	void TestFrustum(Frustum& frustum);
 };
